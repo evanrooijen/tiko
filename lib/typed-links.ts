@@ -1,7 +1,7 @@
 import type { Route } from "next";
 import {
-  createSerializer,
   type CreateSerializerOptions,
+  createSerializer,
   type ParserMap,
 } from "nuqs/server";
 
