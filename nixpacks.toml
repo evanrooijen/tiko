@@ -5,4 +5,4 @@ aptPkgs = ['build-essential']
 cmds = ["pnpm turbo run build"]
 
 [start]
-cmd = "pnpm run start -p $PORT"
+cmd = "pnpm run start"
