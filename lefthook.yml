@@ -1,0 +1,13 @@
+pre-commit:
+  jobs:
+    - name: lint
+      run: pnpm run lint --fix --colors=off
+      stage_fixed: true
+
+    - name: format
+      run: pnpm run format --colors=off
+      stage_fixed: true
+
+    - name: check-types
+      run: pnpm run check-types
+      parrallel: true
