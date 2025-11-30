@@ -1,5 +1,0 @@
----
-"tiko": patch
----
-
-Remove grayscale
