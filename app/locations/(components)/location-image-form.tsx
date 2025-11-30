@@ -31,17 +31,22 @@ const LocationImageForm = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const imageInput = useRef<HTMLInputElement>(null);
   const [locationId] = useQueryState("location");
-  const location = useQuery(api.locations.get, {
-    id: locationId as Id<"locations">,
-  });
+  const location = useQuery(
+    api.locations.get,
+    !locationId
+      ? "skip"
+      : {
+          id: locationId as Id<"locations">,
+        },
+  );
 
   const handleImageUpload = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      if (!selectedImage || !location) {
+        return;
+      }
       startTransition(async () => {
-        if (!selectedImage || !location) {
-          return;
-        }
         const postUrl = await generateUploadUrl();
         const result = await fetch(postUrl, {
           method: "POST",
