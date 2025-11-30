@@ -1,5 +1,11 @@
 # tiko
 
+## 0.2.1
+
+### Patch Changes
+
+- fb40fff: URL state handling for location
+
 ## 0.2.0
 
 ### Minor Changes
