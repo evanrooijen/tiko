@@ -6,4 +6,5 @@ export const locations = defineTable({
   long: v.number(),
   title: v.string(),
   description: v.optional(v.string()),
+  countryCode: v.string(),
 });

@@ -1,8 +1,9 @@
 "use client";
 
-import { type Preloaded, usePreloadedQuery } from "convex/react";
+import { usePreloadedQuery } from "convex/react";
 import { MapPinIcon } from "lucide-react";
-import React from "react";
+import { useQueryState } from "nuqs";
+import React, { useMemo } from "react";
 import {
   Item,
   ItemContent,
@@ -12,20 +13,29 @@ import {
   ItemSeparator,
   ItemTitle,
 } from "@/components/ui/item";
-import type { api } from "@/convex/_generated/api";
+import type { WithPreloadedLocations } from "./types";
 
-export function LocationList(props: {
-  preloadedLocations: Preloaded<typeof api.locations.list>;
-}) {
+type Props = WithPreloadedLocations;
+
+export function LocationList(props: Props) {
   const locations = usePreloadedQuery(props.preloadedLocations);
+  const [country] = useQueryState("country");
+
+  const filteredCountries = useMemo(() => {
+    if (!country) {
+      return locations;
+    }
+    return locations.filter((location) => location.countryCode === country);
+  }, [country, locations]);
+
   // render `locations`...
   return (
-    <ItemGroup>
-      {locations.map((location, index) => (
+    <ItemGroup className="max-w-md">
+      {filteredCountries.map((location, index) => (
         <React.Fragment key={location._id}>
           <Item>
             <ItemMedia variant="icon">
-              <MapPinIcon />
+              <MapPinIcon className="text-primary" />
             </ItemMedia>
             <ItemContent>
               <ItemTitle>{location.title}</ItemTitle>
