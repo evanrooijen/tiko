@@ -14,6 +14,7 @@ import {
   ItemSeparator,
   ItemTitle,
 } from "@/components/ui/item";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import type { WithPreloadedLocations } from "./types";
 
 type Props = WithPreloadedLocations;
@@ -21,6 +22,7 @@ type Props = WithPreloadedLocations;
 export function LocationList(props: Props) {
   const locations = usePreloadedQuery(props.preloadedLocations);
   const [country] = useQueryState("country");
+  const [, setSelectedLocation] = useQueryState("location");
 
   const filteredCountries = useMemo(() => {
     if (!country) {
@@ -31,36 +33,38 @@ export function LocationList(props: Props) {
 
   // render `locations`...
   return (
-    <ItemGroup className="max-w-md">
-      {filteredCountries.map((location, index) => (
-        <React.Fragment key={location._id}>
-          <Item>
-            {location.imageId && location.image ? (
-              <ItemMedia variant="image" className="relative">
-                <Image
-                  src={location.image}
-                  alt={location.title}
-                  width={80}
-                  height={80}
-                  quality={100}
-                  className="object-cover"
-                />
-              </ItemMedia>
-            ) : (
-              <ItemMedia variant="icon">
-                <MapPinIcon className="text-primary" />
-              </ItemMedia>
-            )}
-            <ItemContent>
-              <ItemTitle>{location.title}</ItemTitle>
-              <ItemDescription>
-                {location.lat}, {location.long}
-              </ItemDescription>
-            </ItemContent>
-          </Item>
-          {index !== locations.length - 1 && <ItemSeparator />}
-        </React.Fragment>
-      ))}
-    </ItemGroup>
+    <ScrollArea className="h-[70vh] px-3">
+      <ItemGroup className="max-w-md">
+        {filteredCountries.map((location, index) => (
+          <React.Fragment key={location._id}>
+            <Item onClick={() => setSelectedLocation(location._id)}>
+              {location.imageId && location.image ? (
+                <ItemMedia variant="image" className="relative">
+                  <Image
+                    src={location.image}
+                    alt={location.title}
+                    width={80}
+                    height={80}
+                    quality={100}
+                    className="object-cover"
+                  />
+                </ItemMedia>
+              ) : (
+                <ItemMedia variant="icon">
+                  <MapPinIcon className="text-primary" />
+                </ItemMedia>
+              )}
+              <ItemContent>
+                <ItemTitle>{location.title}</ItemTitle>
+                <ItemDescription>
+                  {location.lat}, {location.long}
+                </ItemDescription>
+              </ItemContent>
+            </Item>
+            {index !== locations.length - 1 && <ItemSeparator />}
+          </React.Fragment>
+        ))}
+      </ItemGroup>
+    </ScrollArea>
   );
 }

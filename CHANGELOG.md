@@ -1,5 +1,11 @@
 # tiko
 
+## 0.2.0
+
+### Minor Changes
+
+- 84a192d: Add image upload form
+
 ## 0.1.7
 
 ### Patch Changes
