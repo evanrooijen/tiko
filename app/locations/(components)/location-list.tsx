@@ -36,13 +36,14 @@ export function LocationList(props: Props) {
         <React.Fragment key={location._id}>
           <Item>
             {location.imageId && location.image ? (
-              <ItemMedia variant="image">
+              <ItemMedia variant="image" className="relative">
                 <Image
                   src={location.image}
                   alt={location.title}
-                  width={32}
-                  height={32}
-                  className="object-cover grayscale"
+                  width={80}
+                  height={80}
+                  quality={100}
+                  className="object-cover"
                 />
               </ItemMedia>
             ) : (
