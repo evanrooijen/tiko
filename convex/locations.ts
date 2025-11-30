@@ -1,17 +1,30 @@
 import { v } from "convex/values";
-import type { Doc } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 
 export const list = query({
   args: {
     countryCode: v.optional(v.string()),
   },
-  handler: async (ctx, args): Promise<Doc<"locations">[]> => {
+  handler: async (ctx, args) => {
     const locations = await ctx.db.query("locations").collect();
+
+    const locationsWithImages = await Promise.all(
+      locations.map(async (location) => ({
+        ...location,
+        ...(location.imageId
+          ? {
+              image: await ctx.storage.getUrl(location.imageId),
+            }
+          : {
+              image: null,
+            }),
+      })),
+    );
+
     if (!args.countryCode) {
-      return locations;
+      return locationsWithImages;
     }
-    return locations.filter(
+    return locationsWithImages.filter(
       (location) => location.countryCode === args.countryCode,
     );
   },

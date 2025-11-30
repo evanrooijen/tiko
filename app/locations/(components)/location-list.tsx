@@ -2,6 +2,7 @@
 
 import { usePreloadedQuery } from "convex/react";
 import { MapPinIcon } from "lucide-react";
+import Image from "next/image";
 import { useQueryState } from "nuqs";
 import React, { useMemo } from "react";
 import {
@@ -34,9 +35,21 @@ export function LocationList(props: Props) {
       {filteredCountries.map((location, index) => (
         <React.Fragment key={location._id}>
           <Item>
-            <ItemMedia variant="icon">
-              <MapPinIcon className="text-primary" />
-            </ItemMedia>
+            {location.imageId && location.image ? (
+              <ItemMedia variant="image">
+                <Image
+                  src={location.image}
+                  alt={location.title}
+                  width={32}
+                  height={32}
+                  className="object-cover grayscale"
+                />
+              </ItemMedia>
+            ) : (
+              <ItemMedia variant="icon">
+                <MapPinIcon className="text-primary" />
+              </ItemMedia>
+            )}
             <ItemContent>
               <ItemTitle>{location.title}</ItemTitle>
               <ItemDescription>

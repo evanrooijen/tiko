@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as images from "../images.js";
 import type * as locations from "../locations.js";
 import type * as schemas_locations from "../schemas/locations.js";
 
@@ -18,6 +19,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  images: typeof images;
   locations: typeof locations;
   "schemas/locations": typeof schemas_locations;
 }>;
