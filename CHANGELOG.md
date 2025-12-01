@@ -1,5 +1,11 @@
 # tiko
 
+## 1.1.1
+
+### Patch Changes
+
+- dcab65c: Fix parrellel routes
+
 ## 1.1.0
 
 ### Minor Changes
