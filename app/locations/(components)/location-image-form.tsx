@@ -76,7 +76,7 @@ const LocationImageForm = ({ preloadedLocation }: Props) => {
         <FieldDescription>Upload an image for this location</FieldDescription>
 
         <FieldGroup>
-          <div className="w-full relative h-40 rounded-lg overflow-hidden">
+          <div className="w-full relative aspect-square rounded-lg overflow-hidden">
             {location.image ? (
               <Image
                 src={location.image}

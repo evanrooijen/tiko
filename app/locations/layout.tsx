@@ -10,7 +10,7 @@ const Layout = ({ sidebar, main }: LayoutProps) => {
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
           Locations
         </h1>
-        <div className="max-w-xl grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-[420px_1fr] gap-4">
           {sidebar}
           {main}
         </div>
