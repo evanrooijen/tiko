@@ -1,5 +1,13 @@
 # tiko
 
+## 1.0.0
+
+### Major Changes
+
+- 9cd4b23: Added detail page
+
+  Now uses parrallel routes to render the filter and detail section
+
 ## 0.2.1
 
 ### Patch Changes
