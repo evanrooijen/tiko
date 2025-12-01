@@ -1,5 +1,11 @@
 # tiko
 
+## 1.1.0
+
+### Minor Changes
+
+- 368a259: Update layout
+
 ## 1.0.0
 
 ### Major Changes
