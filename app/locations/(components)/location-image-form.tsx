@@ -1,8 +1,7 @@
 "use client";
 
-import { useMutation, useQuery } from "convex/react";
+import { useMutation, usePreloadedQuery } from "convex/react";
 import Image from "next/image";
-import { useQueryState } from "nuqs";
 import {
   type FormEvent,
   useCallback,
@@ -22,23 +21,17 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
-import type { Id } from "@/convex/_generated/dataModel";
+import type { WithPreloadedLocation } from "./types";
 
-const LocationImageForm = () => {
+type Props = WithPreloadedLocation;
+
+const LocationImageForm = ({ preloadedLocation }: Props) => {
   const generateUploadUrl = useMutation(api.locations.generateUploadUrl);
   const sendImage = useMutation(api.locations.setLocationImage);
   const [isPending, startTransition] = useTransition();
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const imageInput = useRef<HTMLInputElement>(null);
-  const [locationId] = useQueryState("location");
-  const location = useQuery(
-    api.locations.get,
-    !locationId
-      ? "skip"
-      : {
-          id: locationId as Id<"locations">,
-        },
-  );
+  const location = usePreloadedQuery(preloadedLocation);
 
   const handleImageUpload = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -69,7 +62,7 @@ const LocationImageForm = () => {
     [selectedImage, location, sendImage, generateUploadUrl],
   );
 
-  if (!location || !locationId) {
+  if (!location) {
     return <span>Select a location</span>;
   }
 
