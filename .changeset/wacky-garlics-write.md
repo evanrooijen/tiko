@@ -1,0 +1,5 @@
+---
+"tiko": patch
+---
+
+Alter config
