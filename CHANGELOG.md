@@ -1,5 +1,11 @@
 # tiko
 
+## 1.1.2
+
+### Patch Changes
+
+- [`8492b2f`](https://github.com/evanrooijen/tiko/commit/8492b2fe7ed30771ffd126cf6af7dfd9ec6232f2) Thanks [@evanrooijen](https://github.com/evanrooijen)! - Alter config
+
 ## 1.1.1
 
 ### Patch Changes
