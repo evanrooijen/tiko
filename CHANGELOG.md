@@ -1,5 +1,11 @@
 # tiko
 
+## 1.1.3
+
+### Patch Changes
+
+- [`e93f938`](https://github.com/evanrooijen/tiko/commit/e93f9380d6178004396cdfe94fce8cb9afc82eba) Thanks [@evanrooijen](https://github.com/evanrooijen)! - Add flags
+
 ## 1.1.2
 
 ### Patch Changes
