@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/item";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { WithPreloadedLocations } from "./types";
+import { flagImageUrl } from "./utils";
 
 type Props = WithPreloadedLocations;
 
@@ -63,7 +64,15 @@ export function LocationList(props: Props) {
                   </ItemMedia>
                 )}
                 <ItemContent>
-                  <ItemTitle>{location.title}</ItemTitle>
+                  <ItemTitle>
+                    <Image
+                      src={flagImageUrl(location.countryCode)}
+                      alt={location.countryCode}
+                      width={16}
+                      height={16}
+                    />
+                    {location.title}
+                  </ItemTitle>
                   <ItemDescription>
                     {location.lat}, {location.long}
                   </ItemDescription>

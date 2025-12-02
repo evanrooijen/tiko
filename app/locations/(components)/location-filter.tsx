@@ -1,8 +1,9 @@
 "use client";
 
 import { usePreloadedQuery } from "convex/react";
+import Image from "next/image";
 import { useQueryState } from "nuqs";
-import { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -14,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { WithPreloadedCountryCodes } from "./types";
+import { flagImageUrl } from "./utils";
 
 const translator = new Intl.DisplayNames(["en"], { type: "region" });
 
@@ -61,7 +63,14 @@ const LocationFilter = ({ preloadedCountryCodes, id }: Props) => {
           <SelectSeparator />
           {countries.map((country) => (
             <SelectItem key={country.value} value={country.value}>
-              {country.label}
+              <Image
+                width={16}
+                height={16}
+                quality={100}
+                src={flagImageUrl(country.value)}
+                alt={country.label}
+              />
+              <span>{country.label}</span>
             </SelectItem>
           ))}
         </SelectGroup>
