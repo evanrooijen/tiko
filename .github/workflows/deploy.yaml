@@ -53,4 +53,4 @@ jobs:
               "json":{
                   "applicationId": "${{ secrets.DOKPLOY_APPLICATION_ID }}"
               }
-          }""
+          }"
