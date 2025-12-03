@@ -1,5 +1,11 @@
 # tiko
 
+## 2.0.0
+
+### Major Changes
+
+- [`4273edc`](https://github.com/evanrooijen/tiko/commit/4273edcc3f35a32b1d46f9d8ffdb6f1a29d1b474) Thanks [@evanrooijen](https://github.com/evanrooijen)! - Move away from railpack
+
 ## 1.1.4
 
 ### Patch Changes
