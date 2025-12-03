@@ -1,5 +1,11 @@
 # tiko
 
+## 1.1.4
+
+### Patch Changes
+
+- [`e3ee8a1`](https://github.com/evanrooijen/tiko/commit/e3ee8a1ac3c9bf46578002e5002bdd8b8a91db95) Thanks [@evanrooijen](https://github.com/evanrooijen)! - Unique country codes
+
 ## 1.1.3
 
 ### Patch Changes
