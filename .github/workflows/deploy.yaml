@@ -45,12 +45,12 @@ jobs:
       - name: Trigger Dokploy Deployment
         run: |
           curl -X 'POST' \
-          'https://${{vars.DOKPLOY_URL}}/api/trpc/application.deploy' \
+          "https://${{ vars.DOKPLOY_URL }}/api/trpc/application.deploy" \
           -H 'accept: application/json' \
-          -H 'x-api-key: ${{secrets.DOKPLOY_AUTH_TOKEN}}' \
+          -H "x-api-key: ${{ secrets.DOKPLOY_AUTH_TOKEN }}" \
           -H 'Content-Type: application/json' \
-          -d '{
+          -d "{
               "json":{
-                  "applicationId": "${{secrets.DOKPLOY_APPLICATION_ID}}"
+                  "applicationId": "${{ secrets.DOKPLOY_APPLICATION_ID }}"
               }
-          }'
+          }""
