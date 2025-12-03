@@ -49,8 +49,4 @@ jobs:
           -H 'accept: application/json' \
           -H "x-api-key: ${{ secrets.DOKPLOY_AUTH_TOKEN }}" \
           -H 'Content-Type: application/json' \
-          -d "{
-              "json":{
-                  "applicationId": "${{ secrets.DOKPLOY_APPLICATION_ID }}"
-              }
-          }"
+          -d "$(jq -n --arg id "${{ secrets.DOKPLOY_APPLICATION_ID }}" '{"json": {"applicationId": $id}}')"
