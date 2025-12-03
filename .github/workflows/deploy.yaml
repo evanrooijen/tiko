@@ -6,8 +6,9 @@ on:
 
 jobs:
   build-and-push-dockerfile-image:
+    concurrency: production
     runs-on: ubuntu-latest
-
+    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
