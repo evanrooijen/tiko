@@ -10,3 +10,4 @@ CHANGELOG.md
 .changeset
 mock
 .env*
+.github
