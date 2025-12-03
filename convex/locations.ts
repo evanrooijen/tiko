@@ -38,7 +38,8 @@ export const list = query({
 export const countryCodes = query({
   handler: async (ctx): Promise<string[]> => {
     const locations = await ctx.db.query("locations").collect();
-    return locations.map((location) => location.countryCode).sort();
+    const codes = locations.map((location) => location.countryCode);
+    return [...new Set(codes)].sort();
   },
 });
 
