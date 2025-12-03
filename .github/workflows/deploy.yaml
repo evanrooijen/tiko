@@ -41,3 +41,10 @@ jobs:
           tags: |
             ghcr.io/evanrooijen/tiko:latest
           platforms: linux/amd64
+
+      - name: Dokploy Deployment
+        uses: benbristow/dokploy-deploy-action@0.0.1
+        with:
+          auth_token: ${{ vars.DOKPLOY_AUTH_TOKEN }}
+          application_id: ${{ vars.DOKPLOY_APPLICATION_ID }}
+          dokploy_url: ${{ vars.DOKPLOY_URL }}
