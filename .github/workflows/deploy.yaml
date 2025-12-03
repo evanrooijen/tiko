@@ -19,8 +19,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            NEXT_PUBLIC_CONVEX_URL=${{ vars.NEXT_PUBLIC_CONVEX_URL }}
           tags: |
             evanrooijen/tiko:latest
           platforms: linux/amd64
-        env:
-          NEXT_PUBLIC_CONVEX_URL: ${{vars.NEXT_PUBLIC_CONVEX_URL}}
