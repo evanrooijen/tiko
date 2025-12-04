@@ -3,7 +3,7 @@
 import { usePreloadedQuery } from "convex/react";
 import Image from "next/image";
 import { useQueryState } from "nuqs";
-import { memo, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -29,13 +29,13 @@ const LocationFilter = ({ preloadedCountryCodes, id }: Props) => {
   const [selectedCountry, setSelectedCountry] = useQueryState("country", {
     shallow: false,
   });
-  const locations = usePreloadedQuery(preloadedCountryCodes);
-  const countries = useMemo(() => {
-    return [...new Set(locations)].toSorted().map((countryCode) => ({
+  const countryCodes = usePreloadedQuery(preloadedCountryCodes);
+  const filterValues = useMemo(() => {
+    return countryCodes.map((countryCode) => ({
       value: countryCode,
       label: translator.of(countryCode) ?? countryCode,
     }));
-  }, [locations]);
+  }, [countryCodes]);
 
   return (
     <Select
@@ -61,7 +61,7 @@ const LocationFilter = ({ preloadedCountryCodes, id }: Props) => {
             Reset
           </Button>
           <SelectSeparator />
-          {countries.map((country) => (
+          {filterValues.map((country) => (
             <SelectItem key={country.value} value={country.value}>
               <Image
                 width={16}

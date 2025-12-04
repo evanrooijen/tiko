@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   typedRoutes: true,
   output: "standalone",
+  cacheComponents: true,
   images: {
     qualities: [75, 100],
     remotePatterns: [

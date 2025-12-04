@@ -1,8 +1,8 @@
 import { preloadQuery } from "convex/nextjs";
 import { notFound } from "next/navigation";
+import LocationImageForm from "@/app/locations/(components)/location-image-form";
 import { api } from "@/convex/_generated/api";
 import type { Id } from "@/convex/_generated/dataModel";
-import LocationDetail from "../../(components)/location-detail";
 
 type PageProps = {
   params: Promise<{
@@ -24,6 +24,6 @@ const Page = async (props: PageProps) => {
   if (!location) {
     notFound();
   }
-  return <LocationDetail preloadedLocation={location} />;
+  return <LocationImageForm preloadedLocation={location} />;
 };
 export default Page;
