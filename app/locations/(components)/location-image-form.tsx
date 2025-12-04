@@ -83,7 +83,7 @@ const LocationImageForm = ({ preloadedLocation }: Props) => {
                 alt={location.title}
                 fill
                 quality={100}
-                objectFit="cover"
+                className="object-contain"
               />
             ) : (
               <div className="inset-0 rounded-lg bg-accent absolute flex items-center justify-center">
