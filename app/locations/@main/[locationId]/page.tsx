@@ -1,7 +1,4 @@
-import { preloadQuery } from "convex/nextjs";
-import { notFound } from "next/navigation";
-import { api } from "@/convex/_generated/api";
-import type { Id } from "@/convex/_generated/dataModel";
+import { Suspense } from "react";
 import LocationDetail from "../../(components)/location-detail";
 
 type PageProps = {
@@ -11,19 +8,12 @@ type PageProps = {
 };
 
 const Page = async (props: PageProps) => {
-  const params = await props.params;
+  const locationIdPromise = props.params.then(({ locationId }) => locationId);
 
-  if (!params.locationId) {
-    notFound();
-  }
-
-  const location = await preloadQuery(api.locations.get, {
-    id: params.locationId as Id<"locations">,
-  });
-
-  if (!location) {
-    notFound();
-  }
-  return <LocationDetail preloadedLocation={location} />;
+  return (
+    <Suspense fallback={<div>Loading location...</div>}>
+      <LocationDetail locationId={locationIdPromise} />
+    </Suspense>
+  );
 };
 export default Page;
