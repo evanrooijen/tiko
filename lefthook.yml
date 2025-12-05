@@ -1,11 +1,17 @@
 pre-commit:
   jobs:
     - name: lint
-      run: pnpm run lint --fix --colors=off
+      run: pnpm run lint --fix --colors=off {staged_files}
+      glob:
+        - "**/*.tsx"
+        - "**/*.ts"
       stage_fixed: true
 
     - name: format
-      run: pnpm run format --colors=off
+      run: pnpm run format --colors=off {staged_files}
+      glob:
+        - "**/*.tsx"
+        - "**/*.ts"
       stage_fixed: true
 
     - name: check-types
