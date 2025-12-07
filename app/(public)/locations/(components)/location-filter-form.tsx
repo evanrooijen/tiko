@@ -9,9 +9,9 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { api } from "@/convex/_generated/api";
-import LocationFilter from "../(components)/location-filter";
-import { LocationList } from "../(components)/location-list";
-import { loadSearchParams } from "../(components)/searchParams";
+import LocationFilter from "./location-filter";
+import { LocationList } from "./location-list";
+import { loadSearchParams } from "./searchParams";
 
 type Props = {
   searchParams: Promise<SearchParams>;
