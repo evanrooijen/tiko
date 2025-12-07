@@ -11,6 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
+import UserNavigation from "./user-navigation";
 
 function CustomNavigationMenu() {
   const isMobile = useIsMobile();
@@ -56,7 +57,10 @@ function ListItem({
 const Navigation = () => {
   return (
     <div className="container mx-auto py-4">
-      <CustomNavigationMenu />
+      <div className="flex justify-between items-center gap-4 px-4">
+        <CustomNavigationMenu />
+        <UserNavigation />
+      </div>
     </div>
   );
 };
