@@ -35,14 +35,6 @@ export const list = query({
   },
 });
 
-export const countryCodes = query({
-  handler: async (ctx): Promise<string[]> => {
-    const locations = await ctx.db.query("locations").collect();
-    const codes = locations.map((location) => location.countryCode);
-    return [...new Set(codes)].sort();
-  },
-});
-
 export const get = query({
   args: { id: v.id("locations") },
   handler: async (ctx, args) => {
@@ -51,6 +43,19 @@ export const get = query({
       return null;
     }
     return await includeLocationImage(ctx)(data);
+  },
+});
+
+export const add = mutation({
+  args: {
+    title: v.string(),
+    lat: v.float64(),
+    long: v.float64(),
+    countryCode: v.string(),
+    description: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert("locations", args);
   },
 });
 

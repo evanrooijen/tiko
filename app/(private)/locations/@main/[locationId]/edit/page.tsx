@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import LocationImageEdit from "@/app/(public)/locations/(components)/location-image-edit";
+import LocationImageEdit from "@/app/(private)/locations/(components)/location-image-edit";
 
 type PageProps = {
   params: Promise<{

@@ -14,28 +14,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { WithPreloadedCountryCodes } from "./types";
 import { flagImageUrl } from "./utils";
 
-const translator = new Intl.DisplayNames(["en"], { type: "region" });
-
-type Props = WithPreloadedCountryCodes & {
+type Props = {
   id: string;
+  countries: Array<{ label: string; value: string }>;
 };
 
-const LocationFilter = ({ preloadedCountryCodes, id }: Props) => {
+const LocationFilter = ({ countries, id }: Props) => {
   const [key, setKey] = useState(Date.now());
 
   const [selectedCountry, setSelectedCountry] = useQueryState("country", {
     shallow: false,
   });
-  const countryCodes = usePreloadedQuery(preloadedCountryCodes);
-  const filterValues = useMemo(() => {
-    return countryCodes.map((countryCode) => ({
-      value: countryCode,
-      label: translator.of(countryCode) ?? countryCode,
-    }));
-  }, [countryCodes]);
 
   return (
     <Select
@@ -61,7 +52,7 @@ const LocationFilter = ({ preloadedCountryCodes, id }: Props) => {
             Reset
           </Button>
           <SelectSeparator />
-          {filterValues.map((country) => (
+          {countries.map((country) => (
             <SelectItem key={country.value} value={country.value}>
               <Image
                 width={16}

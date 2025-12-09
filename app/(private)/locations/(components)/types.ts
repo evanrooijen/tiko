@@ -7,6 +7,3 @@ export type WithPreloadedLocations = {
 export type WithPreloadedLocation = {
   preloadedLocation: Preloaded<typeof api.locations.get>;
 };
-export type WithPreloadedCountryCodes = {
-  preloadedCountryCodes: Preloaded<typeof api.locations.countryCodes>;
-};

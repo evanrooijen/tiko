@@ -12,6 +12,7 @@ import { api } from "@/convex/_generated/api";
 import LocationFilter from "./location-filter";
 import { LocationList } from "./location-list";
 import { loadSearchParams } from "./searchParams";
+import { getCountryCodes } from "./utils";
 
 type Props = {
   searchParams: Promise<SearchParams>;
@@ -22,28 +23,30 @@ const LocationFilterForm = async ({
 }: Props) => {
   const searchParams = await searchParamsPromise;
   const { countryCode } = await loadSearchParams(searchParams);
-  const preloadedCountryCodes = await preloadQuery(api.locations.countryCodes);
+  const countryCodes = await getCountryCodes();
 
   return (
     <LocationFilterFormImpl
       countryCode={countryCode}
-      preloadedCountryCodes={preloadedCountryCodes}
+      countryCodes={countryCodes}
     />
   );
 };
 
 const LocationFilterFormImpl = async ({
   countryCode,
-  preloadedCountryCodes,
+  countryCodes,
 }: {
   countryCode: string | null;
-  preloadedCountryCodes: Awaited<ReturnType<typeof preloadQuery>>;
+  countryCodes: Awaited<ReturnType<typeof getCountryCodes>>;
 }) => {
   "use cache";
 
   const preloadedLocations = await preloadQuery(api.locations.list, {
     ...(countryCode && { countryCode }),
   });
+
+  const { data } = countryCodes;
 
   return (
     <div className="max-w-md flex flex-col gap-4">
@@ -56,7 +59,12 @@ const LocationFilterFormImpl = async ({
             </FieldContent>
             <LocationFilter
               id="country"
-              preloadedCountryCodes={preloadedCountryCodes}
+              countries={
+                data?.map((c) => ({
+                  label: c.name.common,
+                  value: c.cca2,
+                })) || []
+              }
             />
           </Field>
         </FieldSet>
