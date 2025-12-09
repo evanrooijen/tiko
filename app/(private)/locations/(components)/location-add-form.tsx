@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/correctness/noChildrenProp: <explanation> */
+/** biome-ignore-all lint/correctness/noChildrenProp: required for tanstack form */
 "use client";
 
 import { useForm } from "@tanstack/react-form";
